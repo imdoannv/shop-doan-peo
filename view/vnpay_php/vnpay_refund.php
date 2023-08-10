@@ -47,7 +47,7 @@
                     <input type="submit"  class="btn btn-default" value="Refund" />
                 </form>
                 <br>
-                >>>> <a href="../index.php?act=home">Về trang chủ</a> <<<<
+                >>>> <a href="http://localhost/dam/index.php?act=home">Về trang chủ</a> <<<<
             </div>
             <?php
             require_once("config.php");

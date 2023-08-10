@@ -8,6 +8,16 @@
     const newsEl = document.querySelector('.news');
     const contactEl = document.querySelector('.contact');
 
+    const myCartEl = document.querySelector('.myCart');
+    const forgotEl = document.querySelector('.forgot');
+    const updateEl = document.querySelector('.update');
+    const loginAdminEl = document.querySelector('.loginAdmin');
+    const logOutEl = document.querySelector('.logOut');
+    const usernameEl = document.querySelector('.username');
+    const passwordEl = document.querySelector('.password');
+    const rememberEl = document.querySelector('.remember');
+    const registerEl = document.querySelector('.register');
+
 
     link.forEach(el => {
         el.addEventListener('click', () => {
@@ -21,6 +31,16 @@
             introduceEl.textContent = data[attr].introduce;
             newsEl.textContent = data[attr].news;
             contactEl.textContent = data[attr].contact;
+
+            myCartEl.textContent = data[attr].myCart;
+            forgotEl.textContent = data[attr].forgot;
+            updateEl.textContent = data[attr].update;
+            loginAdminEl.textContent = data[attr].loginAdmin;
+            logOutEl.textContent = data[attr].logOut;
+            usernameEl.textContent = data[attr].username;
+            passwordEl.textContent = data[attr].password;
+            rememberEl.textContent = data[attr].remember;
+            registerEl.textContent = data[attr].register;
         });
     });
 
@@ -31,7 +51,16 @@
             "product": "Product",
             "introduce": "Introduce",
             "news": "News",
-            "contact": "Contact"
+            "contact": "Contact",
+            "myCart": "> My Cart",
+            "forgot":" > Forget Password",
+            "update":"> Update account",
+            "loginAdmin":"Login Admin",
+            "logOut":"> Log Out",
+            "username":"Username",
+            "password":"Password",
+            "remember":"Remember me",
+            "register": "Create Account"
         },
         "vietnamese": {
             "time":"Thời gian hoạt động:  09:00 - 22:00 mỗi ngày",
@@ -39,9 +68,95 @@
             "product": "Sản phẩm",
             "introduce": "Giới thiệu",
             "news": "Tin tức",
-            "contact": "Liên hệ"
+            "contact": "Liên hệ",
+
+            "myCart": "> Đơn hàng của tôi",
+            "forgot":"> Quên mật khẩu",
+            "update":"> Cập nhật tài khoản",
+            "loginAdmin":"> Đăng nhập admin",
+            "logOut":"> Đăng Xuất",
+            "username":"Tên đăng nhập",
+            "password":"Mật khẩu",
+            "remember":"Ghi nhớ tài khoản?",
+            "register": "Đăng ký thành viên"
         },
     }
+
+    const userEle = document.getElementById('user');
+const emailEle = document.getElementById('email');
+const phoneEle = document.getElementById('phone');
+
+const btnRegister = document.getElementById('btn-register');
+const inputEles = document.querySelectorAll('.input-row');
+
+btnRegister.addEventListener('click', function () {
+    Array.from(inputEles).map((ele) =>
+        ele.classList.remove('success', 'error')
+    );
+    let isValid = checkValidate();
+
+    if (isValid) {
+        // alert('Gửi đăng ký thành công');
+    }
+});
+
+function checkValidate() {
+    let userValue = userEle.value;
+    let emailValue = emailEle.value;
+    let phoneValue = phoneEle.value;
+
+    let isCheck = true;
+
+    if (userValue == '') {
+        setError(userEle, 'Tên không được để trống');
+        isCheck = false;
+    } else {
+        setSuccess(userEle);
+    }
+
+    if (emailValue == '') {
+        setError(emailEle, 'Email không được để trống');
+        isCheck = false;
+    } else if (!isEmail(emailValue)) {
+        setError(emailEle, 'Email không đúng định dạng');
+        isCheck = false;
+    } else {
+        setSuccess(emailEle);
+    }
+
+    if (phoneValue == '') {
+        setError(phoneEle, 'Số điện thoại không được để trống');
+        isCheck = false;
+    } else if (!isPhone(phoneValue)) {
+        setError(phoneEle, 'Số điện thoại không đúng định dạng');
+        isCheck = false;
+    } else {
+        setSuccess(phoneEle);
+    }
+
+
+    return isCheck;
+}
+
+function setSuccess(ele) {
+    ele.parentNode.classList.add('success');
+}
+
+function setError(ele, message) {
+    let parentEle = ele.parentNode;
+    parentEle.classList.add('error');
+    parentEle.querySelector('small').innerText = message;
+}
+
+function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+    );
+}
+
+function isPhone(number) {
+    return /(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(number);
+}
 </script>  
 <style>
         .langWrap {

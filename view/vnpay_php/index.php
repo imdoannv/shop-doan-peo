@@ -15,6 +15,8 @@
         <script src="./assets/jquery-1.11.3.min.js"></script>
     </head>
 
+    <!-- https://sandbox.vnpayment.vn/merchantv2/Transaction/SearchRefund.htm -->
+
     <body>
         <?php require_once("./config.php"); ?>             
         <div class="container">
@@ -25,7 +27,7 @@
             <div class="table-responsive">
                 <form action="vnpay_create_payment.php" id="create_form" method="post">       
 
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label for="language">Loại hàng hóa </label>
                         <select name="order_type" id="order_type" class="form-control">
                             <option value="topup">Nạp tiền điện thoại</option>
@@ -34,7 +36,7 @@
                             <option value="other">Khác - Xem thêm tại VNPAY</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label for="order_id">Mã hóa đơn</label>
                         <input class="form-control" id="order_id" name="order_id" type="text" value="<?php echo date("YmdHis") ?>"/>
                     </div>
@@ -43,11 +45,13 @@
                         <input class="form-control" id="amount"
                                name="amount" type="number" value="100000"/>
                     </div>
-                    <div class="form-group">
+
+                    
+                    <div class="form-group hidden">
                         <label for="order_desc">Nội dung thanh toán</label>
                         <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Thanh toán mua đồ ăn nhanh  - DHDP</textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hiddenz">
                         <label for="bank_code">Ngân hàng</label>
                         <select name="bank_code" id="bank_code" class="form-control">
                             <option value="">Không chọn</option>
@@ -75,140 +79,140 @@
                             <option value="VISA"> Thanh toan qua VISA/MASTER</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label for="language">Ngôn ngữ</label>
                         <select name="language" id="language" class="form-control">
                             <option value="vn">Tiếng Việt</option>
                             <option value="en">English</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Thời hạn thanh toán</label>
                         <input class="form-control" id="txtexpire"
                                name="txtexpire" type="text" value="<?php echo $expire; ?>"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <h3>Thông tin hóa đơn (Billing)</h3>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Họ tên (*)</label>
                         <input class="form-control" id="txt_billing_fullname"
                                name="txt_billing_fullname" type="text" value="Nguyễn Văn Đoàn"/>             
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Email (*)</label>
                         <input class="form-control" id="txt_billing_email"
                                name="txt_billing_email" type="text" value="doannvph27169@fpt.edu.vn"/>   
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Số điện thoại (*)</label>
                         <input class="form-control" id="txt_billing_mobile"
                                name="txt_billing_mobile" type="text" value="0363738586"/>   
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Địa chỉ (*)</label>
                         <input class="form-control" id="txt_billing_addr1"
                                name="txt_billing_addr1" type="text" value="34 Hoàng Cầu, Đống Đa, TP Hà Nội"/>   
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Mã bưu điện (*)</label>
                         <input class="form-control" id="txt_postalcode"
                                name="txt_postalcode" type="text" value="100000"/> 
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Tỉnh/TP (*)</label>
                         <input class="form-control" id="txt_bill_city"
                                name="txt_bill_city" type="text" value="Hà Nội"/> 
                     </div>
-                    <!-- <div class="form-group">
+                    <!-- <div class="form-group hidden">
                         <label>Bang (Áp dụng cho US,CA)</label>
                         <input class="form-control" id="txt_bill_state"
                                name="txt_bill_state" type="text" value=""/>
                     </div> -->
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Quốc gia (*)</label>
                         <input class="form-control" id="txt_bill_country"
                                name="txt_bill_country" type="text" value="VN"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <h3>Thông tin giao hàng (Shipping)</h3>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Họ tên (*)</label>
                         <input class="form-control" id="txt_ship_fullname"
                                name="txt_ship_fullname" type="text" value="Nguyễn Thế Vinh"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Email (*)</label>
                         <input class="form-control" id="txt_ship_email"
                                name="txt_ship_email" type="text" value="vinhnt@vnpay.vn"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Số điện thoại (*)</label>
                         <input class="form-control" id="txt_ship_mobile"
                                name="txt_ship_mobile" type="text" value="0123456789"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Địa chỉ (*)</label>
                         <input class="form-control" id="txt_ship_addr1"
                                name="txt_ship_addr1" type="text" value="Phòng 315, Công ty VNPAY, Tòa nhà TĐL, 22 Láng Hạ, Đống Đa, Hà Nội"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Mã bưu điện (*)</label>
                         <input class="form-control" id="txt_ship_postalcode"
                                name="txt_ship_postalcode" type="text" value="1000000"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Tỉnh/TP (*)</label>
                         <input class="form-control" id="txt_ship_city"
                                name="txt_ship_city" type="text" value="Hà Nội"/>
                     </div>
-                    <!-- <div class="form-group">
+                    <!-- <div class="form-group hidden">
                         <label>Bang (Áp dụng cho US,CA)</label>
                         <input class="form-control" id="txt_ship_state"
                                name="txt_ship_state" type="text" value=""/>
                     </div> -->
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Quốc gia (*)</label>
                         <input class="form-control" id="txt_ship_country"
                                name="txt_ship_country" type="text" value="VN"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <h3>Thông tin gửi Hóa đơn điện tử (Invoice)</h3>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Tên khách hàng</label>
                         <input class="form-control" id="txt_inv_customer"
                                name="txt_inv_customer" type="text" value="Lê Văn Phổ"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Công ty</label>
                         <input class="form-control" id="txt_inv_company"
                                name="txt_inv_company" type="text" value="Công ty Cổ phần giải pháp Thanh toán Việt Nam"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Địa chỉ</label>
                         <input class="form-control" id="txt_inv_addr1"
                                name="txt_inv_addr1" type="text" value="22 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, TP Hà Nội"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label>Mã số thuế</label>
                         <input class="form-control" id="txt_inv_taxcode"
                                name="txt_inv_taxcode" type="text" value="0102182292"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Loại hóa đơn</label>
                         <select name="cbo_inv_type" id="cbo_inv_type" class="form-control">
                             <option value="I">Cá Nhân</option>
                             <option value="O">Công ty/Tổ chức</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Email</label>
                         <input class="form-control" id="txt_inv_email"
                                name="txt_inv_email" type="text" value="pholv@vnpay.vn"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label >Điện thoại</label>
                         <input class="form-control" id="txt_inv_mobile"
                                name="txt_inv_mobile" type="text" value="02437764668"/>

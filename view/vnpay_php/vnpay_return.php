@@ -100,7 +100,7 @@
             <footer class="footer">
                    <p>&copy; VNPAY <?php echo date('Y')?></p>
 
-                   >>>> <a href="../index.php?act=home">Về trang chủ</a> <<<<
+                   >>>> <a href="http://localhost/dam/index.php?act=home">Về trang chủ</a> <<<<
             </footer>
         </div>  
     </body>
